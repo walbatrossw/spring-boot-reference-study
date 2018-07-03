@@ -117,8 +117,29 @@
     $ java -jar jar파일명.jar 
     ```
     
-### 스프링부트 사용하기
+### 스프링부트 사용하기(Build System)
 
-- 빌드 시스템
-    - 스프링 부트는 maven dependency에 따로 버전을 명시하지 않아도 된다.
-    - 스프링 부트 버전을 올리기만하면 알아서 충돌없이 버전업해준다.    
+- Build System
+    - Dependency Management(의존성 관리)
+        - 스프링 부트는 maven dependency에 따로 버전을 명시하지 않아도 된다. 스프링 부트가 알아서 최적의 버전을 사용한다.
+        - 만약 스프링 부트 버전을 올린다면 스프링부트는 알아서 충돌없이 버전업해준다.
+        - 물론 버전 명시도 가능하다. 
+        - **하지만 Spring Framework 버전은 명시하지 않는 것이 좋다. 스프링부트와 프레임워크는 강력하게 의존되어 있기 때문에**
+    - Maven(메이븐)
+        - 상속받은`spring-boot-starter-parent`에 기본설정이 다 되어있다.
+        - 자바는 1.8, 인코딩은 UTF-8, 그외에 기타 내용들을 확인할 수 있다.
+        - `spring-boot-starter-parent`없이 사용도 가능한데 아래와 같이 `pom.xml`에 작성해주면 된다.
+            ```xml
+            <dependencyManagement>
+            		<dependencies>
+            		<dependency>
+            			<!-- Import dependency management from Spring Boot -->
+            			<groupId>org.springframework.boot</groupId>
+            			<artifactId>spring-boot-dependencies</artifactId>
+            			<version>2.0.3.RELEASE</version>
+            			<type>pom</type>
+            			<scope>import</scope>
+            		</dependency>
+            	</dependencies>
+            </dependencyManagement>
+            ```

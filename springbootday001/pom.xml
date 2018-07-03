@@ -8,14 +8,14 @@
     <artifactId>spring-boot-day001</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <!-- Inherit defaults from Spring Boot -->
+    <!--스프링부트 메이븐 기본 설정은 여기에 다되어 있음-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.0.3.RELEASE</version>
     </parent>
 
-    <!-- Add typical dependencies for a web application -->
+    <!--의존성 추가 : 스프링 부트의 경우 따로 버전 명시가 필요 없음, 상속받은 parent에서 알아서 설정해줌-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -23,6 +23,7 @@
         </dependency>
     </dependencies>
 
+    <!--스프링 부트 메이븐 플러그인 : 빌드를 위한 설정-->
     <build>
         <plugins>
             <plugin>
