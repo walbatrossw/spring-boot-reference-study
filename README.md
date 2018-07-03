@@ -1,6 +1,6 @@
-# [Spring Boot 2.0 유투브 강의](https://www.youtube.com/watch?v=CnmTCMRTbxo&list=PLfI752FpVCS8tDT1QEYwcXmkKDz-_6nm3) 예제 코드 저장소
+# [백기선님의 Spring Boot 2.0 레퍼런스 유투브 강의](https://www.youtube.com/watch?v=CnmTCMRTbxo&list=PLfI752FpVCS8tDT1QEYwcXmkKDz-_6nm3) 예제 코드 및 간단 요약 저장소 
 
-Spring Boot Reference 강의 
+**[Spring Boot Reference Guide](https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#using-boot) 링크**
 
 ## DAY 01. 스프링부트 시작하기
 
@@ -47,7 +47,7 @@ Spring Boot Reference 강의
 - `src/main/`에 패키지를 추가하고, Spring Boot 실행 클래스(`Example`)를 생성, 아래와 같이 코드를 작성해준다.
 
     ```java
-    @RestController // stereotype annotation : @RestController, @Controller, @Repository, @Service, @Component
+    @RestController
     @EnableAutoConfiguration
     public class Example {
     
@@ -71,7 +71,7 @@ Spring Boot Reference 강의
 
     - `@EnableAutoConfiguration` : 스프링에게 어떤 설정을 원하는지 알려주는 애노테이션
 
-- Spring MVC에 관련된 내용은 아래의 링크에서 확인 할 수 있다.
+- Spring MVC에 관련된 내용은 아래 링크를 통해 공부할 것.
     
     - [Spring Web MVC Reference](https://docs.spring.io/spring/docs/5.0.7.RELEASE/spring-framework-reference/web.html#mvc)
 
@@ -85,7 +85,7 @@ Spring Boot Reference 강의
 
 ## Day 02. Executable JAR 어떻께 만들고 어떻게 동작하는가?
 
-### Jar 패키지 빌드하기
+### 스프링부트 프로젝트 배포하기 위한 Jar 패키지 빌드하기
 
 - `pom.xml`에 아래와 같이 코드를 추가
 
@@ -111,7 +111,7 @@ Spring Boot Reference 강의
     $ jar tvf jar파일명.jar
     ```
     
-- jar 파일 실행
+- jar 파일 실행, 정상적으로 터미널에 스프링부트가 실행되는지 확인
 
     ```
     $ java -jar jar파일명.jar 
