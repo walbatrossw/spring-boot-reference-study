@@ -7,14 +7,16 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @EnableAutoConfiguration
 @Configuration
-@Import(ServiceConfig.class)    // 설정클래스 import
-//@ComponentScan                  // 설정클래스 자동으로 scan
+//@Import(ServiceConfig.class)    // 설정클래스 import
+@ComponentScan                  // 설정클래스 자동으로 scan
+@ImportResource("application.xml")
 public class Example {
 
     @RequestMapping("/")

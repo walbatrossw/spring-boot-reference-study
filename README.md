@@ -4,7 +4,7 @@
 
 ## DAY 01. 스프링부트 시작하기
 
-### IntelliJ에서 스프링 부트 프로젝트 생성
+### 1. IntelliJ에서 스프링 부트 프로젝트 생성
 - maven 프로젝트를 생성하고, `pom.xml`에 아래와 같이 작성한다.
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -33,11 +33,13 @@
     
     </project>
     ``` 
-- IntelliJ 터미널에서 maven 빌드하기
+### 2. IntelliJ 터미널에서 maven 빌드
+
     ```
     $ mvn package
     ```
     - 만약 빌드 실패할 경우 명령어를 수행하는 프로젝트 경로를 확인하고, 프로젝트 경로의 `pom.xml`이 있는 곳으로 이동하여 빌드를 다시 수행한다.
+    
 - `src/main/`에 패키지를 추가하고, Spring Boot 실행 클래스(`Example`)를 생성, 아래와 같이 코드를 작성해준다.
     ```java
     @RestController
@@ -60,9 +62,12 @@
         - 스프링이 이 클래스 역할이 무엇인지 인지하도록 하는 역할을 수행한다.
     - `@RequestMapping` : 라우팅 정보를 제공한다.  
     - `@EnableAutoConfiguration` : 스프링에게 어떤 설정을 원하는지 알려주는 애노테이션
+    
 - Spring MVC에 관련된 내용은 아래 링크를 통해 공부할 것.
     - **[Spring Web MVC Reference Guide 5.0.7.RELEASE](https://docs.spring.io/spring/docs/5.0.7.RELEASE/spring-framework-reference/web.html#mvc)**
+
 - 실행은 `main()` 메서드를 실행하거나 `$ mvn spring-boot:run` 명령어를 사용하면 된다.
+
 - 종료는 `ctrl-c`이다.
 
 
@@ -70,7 +75,7 @@
 
 ## Day 02. Executable JAR 어떻게 만들고 어떻게 동작하는가?, 빌드 시스템
 
-### 스프링부트 프로젝트 실행 or 배포를 위한 Jar 패키지 빌드하기
+### 2.1 스프링부트 프로젝트 실행 or 배포를 위한 Jar 패키지 빌드하기
 - `pom.xml`에 아래와 같이 코드를 추가
     ```xml
     <build>
@@ -95,7 +100,7 @@
     $ java -jar jar파일명.jar 
     ```
     
-### 스프링 부트 빌드 시스템
+### 2.2 스프링 부트 빌드 시스템
 - Dependency Management(의존성 관리)
     - 스프링 부트는 maven dependency에 따로 버전을 명시하지 않아도 된다. 스프링 부트가 알아서 최적의 버전을 사용한다.
     - 만약 스프링 부트 버전을 올린다면 스프링부트는 알아서 충돌없이 버전업해준다.
@@ -124,22 +129,22 @@
          
 ## Day03. 스프링 부트 스타터, 패키지 구조, 설정 클래스
 
-### Starters
+### 3.1 Starters
 
 - 스타터는 한번에 스프링과 관련된 의존성을 복붙 필요없이 편리하게 작성할 수 있게 해준다.
 - 예를 들어 JPA를 쓴다면 `spring-boot-starter-data-jpa`에 포함되어있다.
 - 스타터는 수많은 의존성을 가지고 있는데 충돌없이 일관성있게 의존성을 추가하고 빠르게 실행할 수 있게 도와준다.
 - 공식적인 스타터는 `spring-boot-starter-*`로 시작되고, `ctrl-space`를 통해 원하는 의존성을 쉽게 찾을 수 있다.
 
-### Structuring Your Code
+### 3.2 Structuring Your Code
 
-#### Default Package 사용하지 않기
+#### 3.2.1 Default Package 
 - 스프링 부트는 특별한 코드 레이아웃을 요구하지 않는다.
 - default package는 사용하지 않는 것이 좋다. 왜냐면 `@ComponentScan`, `@EntityScan`, `@SpringBootApplication` 애노테이션을 
 사용할 때 문제가 발생할 수 있기 때문인데 모든 클래스를 스프링 부트가 읽음으로써 성능에 문제가 발생할 수 있다.
 - base package를 만들고 클래스를 차곡차곡 분류해나가는 것을 권한한다. `com.exampe.project` 이러한 방식으로 작성하는 것이 바람직하다.
 
-#### 메인 클래스의 위치
+#### 3.2.2 Main Class Location
 - 메인 클래스는 root package에 위치시키는 것을 권장한다.
 - 메인 클래스가 root package에 위치함으로써 `@ComponentScan` 애노테이션에 따로 base package를 설정하지 않아도 root package부터 
 ComponentScan을 시작하게 된다.
@@ -164,7 +169,7 @@ ComponentScan을 시작하게 된다.
                     +- OrderRepository.java
     ```   
  
-### Configuration Classes
+### 3.3 Configuration Classes
 
 - 스프링은 주로 java 클래스나 XML 파일을 설정 파일로 사용하는데 혼용해서 사용이 가능하다.
 - 하지만 둘 중에서 하나는 반드시 메인 설정이 되어야한다. Java 클래스 설정이 XML 설정을 import하거나 그 반대가 되어야 한다.
@@ -172,10 +177,11 @@ ComponentScan을 시작하게 된다.
 - 물론 스프링 부트도 XML 파일로 설정을 할 수 있지만 자바로 설정을 하는것을 권장한다.
 - `Enable*` 애노테이션을 검색해보면 자바 기반의 설정을 찾는데 도움이 될 것이다.
 
-#### 추가 설정 자바 클래스 import
+#### 3.3.1 추가 설정 자바 클래스 import
 - 모든 설정을 `@Configuration` 애노테이션이 있는 하나의 클래스에 다 할 필요는 없다.
 - `@Import` 애노테이션을 사용하여 추가적인 설정 클래스를 import 할 수 있다.
 - 또다른 방법으로는 `@ComponentScan` 애노테이션을 사용하여 `@Configuration` 애노테이션이 달린 모든 클래스를 스프링이 읽어들이게 할 수 있다.
 - 하지만 다른사람이 테스트를 하거나 설정파일을 볼 때 이해하기가 어렵기 때문에 단순하게 한 곳에 설정을 유지하는 것이 좋다.
 
- 
+#### 3.3.2 XML 설정 import
+- `@ImportResource` 애노테이션을 사용하여 XML 설정파일을 import 할 수 있다.
